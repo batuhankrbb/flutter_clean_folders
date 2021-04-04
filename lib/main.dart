@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_templ_mvvm/app/authentication/test/view/test_view.dart';
 import 'package:flutter_templ_mvvm/core/constants/app_constants.dart';
 import 'package:flutter_templ_mvvm/core/init/language/language_manager.dart';
+import 'package:flutter_templ_mvvm/core/init/navigation/navigation_route.dart';
+import 'package:flutter_templ_mvvm/core/init/navigation/navigation_service.dart';
 import 'package:flutter_templ_mvvm/core/init/notifier/provider_list_setup.dart';
 import 'package:flutter_templ_mvvm/core/init/notifier/theme_notifier.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ...ApplicationProvider.instance.singleItems
     ],child: MaterialApp(
+      navigatorKey: NavigationService.insantance.navigatorKey,
+      onGenerateRoute: NavigationRoute().generateRoute,
       home: TestView(),
       theme: Provider.of<ThemeNotifier>(context).currentTheme,
     ),);
