@@ -28,6 +28,7 @@ dependencies:
   easy_localization: ^3.0.0
   flutter_mobx: ^2.0.0
   mobx_codegen: ^2.0.0
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

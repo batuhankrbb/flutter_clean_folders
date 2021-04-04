@@ -4,6 +4,9 @@ import 'package:flutter_templ_mvvm/app/authentication/test/viewmodel/test_view_m
 import 'package:flutter_templ_mvvm/core/base/state/base_state.dart';
 import 'package:flutter_templ_mvvm/core/base/view/base_view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_templ_mvvm/core/constants/enums/app_theme_enum.dart';
+import 'package:flutter_templ_mvvm/core/init/notifier/theme_notifier.dart';
+import 'package:flutter_templ_mvvm/core/init/theme/app_theme_dark.dart';
 
 class TestView extends StatefulWidget {
   @override
@@ -35,6 +38,7 @@ class _TestViewState extends BaseState<TestView> {
     return FloatingActionButton(
       onPressed: () {
         viewModel.incrementNumber();
+        viewModel.changeTheme();
       },
     );
   }
