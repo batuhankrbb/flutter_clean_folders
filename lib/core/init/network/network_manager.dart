@@ -24,7 +24,9 @@ class NetworkManager {
 
   Dio _dio;
 
-  Future<dynamic> dioGet<T extends BaseModel>(String urlBilgileri, T model) async {//bu fonksiyon çok iyi ya. Adam url bilgilerini giriyor, convert edilecek modeli giriyor mis gibi convert edilmiş halde alıyor. Modeli kontrol edip burda işlemler yapıyoruz.
+  Future<dynamic> dioGet<T extends BaseModel>(
+      String urlBilgileri, T model) async {
+    //bu fonksiyon çok iyi ya. Adam url bilgilerini giriyor, convert edilecek modeli giriyor mis gibi convert edilmiş halde alıyor. Modeli kontrol edip burda işlemler yapıyoruz.
     //Bu T basemodelden türüyor ve basemodel içinde fromjson ve tojson metodları her türlü var.
     final response = await _dio.get(
         urlBilgileri); //Yani bunun da her türlü o metodları olacak. Bu yüzden decode edilme tipine bakıyoruz liste olarak mı decode edilsin yoksa direkt map olarak mı diye, ona göre direkt decode edip gönderebiliyoruz.
@@ -43,4 +45,15 @@ class NetworkManager {
         }
     }
   }
+}
+
+class NetworkManager {
+  static NetworkManager _instance;
+  
+  static NetworkManager get instance {
+    if (_instance == null) _instance = NetworkManager._init();
+    return _instance;
+  }
+
+  NetworkManager._init();
 }

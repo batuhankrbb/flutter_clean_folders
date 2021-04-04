@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_templ_mvvm/core/base/viewmodel/base_viewmodel.dart';
 import 'package:flutter_templ_mvvm/core/constants/enums/app_theme_enum.dart';
 import 'package:flutter_templ_mvvm/core/init/notifier/theme_notifier.dart';
 import 'package:mobx/mobx.dart';
@@ -7,8 +8,12 @@ part 'test_view_model.g.dart';
 
 class TestViewModel = _TestViewModelBase with _$TestViewModel;
 
-abstract class _TestViewModelBase with Store {
+abstract class _TestViewModelBase with Store,BaseViewModel {
   BuildContext context;
+
+  @override
+  void init() {
+  }
 
   void setContext(BuildContext context) {
     this.context = context;
