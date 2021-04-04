@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_templ_mvvm/app/authentication/test/viewmodel/test_view_model.dart';
 import 'package:flutter_templ_mvvm/core/base/state/base_state.dart';
 import 'package:flutter_templ_mvvm/core/base/view/base_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TestView extends StatefulWidget {
   @override
@@ -10,21 +11,22 @@ class TestView extends StatefulWidget {
 }
 
 class _TestViewState extends BaseState<TestView> {
-  TestViewModel viewModel; 
+  TestViewModel viewModel;
   @override
   Widget build(BuildContext context) {
-
     return BaseView<TestViewModel>(
-      viewModel: TestViewModel(), 
+      viewModel: TestViewModel(),
       onModelReady: (model) {
         viewModel = model;
       },
       onPageBuilder: (context, viewmodel) => scaffoldBody,
     );
-  
   }
 
   Widget get scaffoldBody => Scaffold(
+        appBar: AppBar(
+          title: Text("TEST"),
+        ),
         body: textNumber(),
         floatingActionButton: floatingActionButtonForIncrement(),
       );

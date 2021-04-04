@@ -1,0 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import 'package:easy_localization/easy_localization.dart';
+
+extension StringLocalization on String {
+  String get localeLang {
+    return this.tr();
+  }
+}

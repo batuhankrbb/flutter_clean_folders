@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_templ_mvvm/core/constants/app_constants.dart';
 import 'package:flutter_templ_mvvm/core/init/language/language_manager.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
     EasyLocalization(
       child: MyApp(),
       supportedLocales: LanguageManager.instance.supportedLocales,
-      path: null,
+      path: ApplicationConstants.LANGUAGE_ASSET_PATH,
     ),
   );
 }
