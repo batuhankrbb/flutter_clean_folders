@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 //! BURASI AÇIKLAMA VE DENEME SAYFASIDIR BURAYI BOŞVER
 
 /*

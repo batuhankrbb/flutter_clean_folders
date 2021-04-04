@@ -17,7 +17,7 @@ import 'package:mobx/mobx.dart';
 //? Örnek kullanım: Bütün sayfalarda internet olmazsa çıkan bir pop-up veya dialog olsun. Bunun için tüm sayfalarda tek tek tanımlamak yerine tüm sayfaları BaseView dan türetip BaseView içinde bunu tanımlamak süper olur.
 
 
-class BaseView<T extends Store> extends StatefulWidget { //Burada T yi ViewModel gibi bir abstract sınıftan türetebilirdik kısıtlamak için.
+class BaseView<T extends Store> extends StatefulWidget {
   BaseView(
       {Key key,
       @required this.viewModel,
@@ -26,7 +26,7 @@ class BaseView<T extends Store> extends StatefulWidget { //Burada T yi ViewModel
       @required this.onPageBuilder})
       : super(key: key);
 
-  final T viewModel; //bu viewmodeli neden burada veriyoruz ve diğer onModelReady ve onPageBuilder içerisinde döndürüyoruz? 
+  final T viewModel; //Aslında burada veriyoruz diğer yerlerde döndürüyoruz ama bi mantığı yok. Yani var ama yok. Biz bunu yapıyoruz çünkü her ekranımızın ViewModel almasını zorlamak istiyoruz. Kısacası BaseView kullanınca her ekran o viewmodeli seve seve alıcak.
   final Function(T model) onModelReady;
   final VoidCallback onDispose;
   final Widget Function(BuildContext context, T value) onPageBuilder;
@@ -40,7 +40,7 @@ class _BaseViewState extends State<BaseView> {
   void initState() {
     super.initState();
     if (widget.onModelReady != null) {
-      widget.onModelReady(widget.viewModel); //eğer adam bir init verdiyse onu çalıştırıyor.
+      widget.onModelReady(widget.viewModel);
     }
   }
 

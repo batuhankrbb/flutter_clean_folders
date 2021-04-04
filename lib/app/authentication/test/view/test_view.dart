@@ -10,7 +10,7 @@ class TestView extends StatefulWidget {
 }
 
 class _TestViewState extends BaseState<TestView> {
-  TestViewModel viewModel;
+  TestViewModel viewModel; 
   @override
   Widget build(BuildContext context) {
 
