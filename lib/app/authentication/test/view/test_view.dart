@@ -13,13 +13,15 @@ class _TestViewState extends BaseState<TestView> {
   TestViewModel viewModel;
   @override
   Widget build(BuildContext context) {
+
     return BaseView<TestViewModel>(
-      viewModel: TestViewModel(),
+      viewModel: TestViewModel(), 
       onModelReady: (model) {
         viewModel = model;
       },
       onPageBuilder: (context, viewmodel) => scaffoldBody,
     );
+  
   }
 
   Widget get scaffoldBody => Scaffold(

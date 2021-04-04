@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_templ_mvvm/core/base/state/base_state.dart';
 import 'package:mobx/mobx.dart';
 /* 
 * Stateful olmasının sebebi şu: Stateless ekrana sadece bir şeyler çizmek için var. 
@@ -17,6 +16,7 @@ import 'package:mobx/mobx.dart';
 
 //? Örnek kullanım: Bütün sayfalarda internet olmazsa çıkan bir pop-up veya dialog olsun. Bunun için tüm sayfalarda tek tek tanımlamak yerine tüm sayfaları BaseView dan türetip BaseView içinde bunu tanımlamak süper olur.
 
+
 class BaseView<T extends Store> extends StatefulWidget { //Burada T yi ViewModel gibi bir abstract sınıftan türetebilirdik kısıtlamak için.
   BaseView(
       {Key key,
@@ -26,21 +26,21 @@ class BaseView<T extends Store> extends StatefulWidget { //Burada T yi ViewModel
       @required this.onPageBuilder})
       : super(key: key);
 
-  final T viewModel;
-  final Function(T model) onModelReady; //init
-  final VoidCallback onDispose; //Burada da T Model parametresi alan bir Function geçebilirdik.
+  final T viewModel; //bu viewmodeli neden burada veriyoruz ve diğer onModelReady ve onPageBuilder içerisinde döndürüyoruz? 
+  final Function(T model) onModelReady;
+  final VoidCallback onDispose;
   final Widget Function(BuildContext context, T value) onPageBuilder;
 
   @override
   _BaseViewState createState() => _BaseViewState();
 }
 
-class _BaseViewState extends BaseState<BaseView> {
+class _BaseViewState extends State<BaseView> {
   @override
   void initState() {
     super.initState();
     if (widget.onModelReady != null) {
-      widget.onModelReady(widget.viewModel);
+      widget.onModelReady(widget.viewModel); //eğer adam bir init verdiyse onu çalıştırıyor.
     }
   }
 
@@ -48,13 +48,13 @@ class _BaseViewState extends BaseState<BaseView> {
   void dispose() {
     super.dispose();
     if (widget.onDispose != null) {
-      widget.onDispose();
+      widget.onDispose(); //eğer adam dispose verdiyse onu çalıştırıyor
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.onPageBuilder(context, widget.viewModel);
+    return widget.onPageBuilder(context, widget.viewModel); //dışarıdan gelen buildi return ediyor
   }
 }
 
