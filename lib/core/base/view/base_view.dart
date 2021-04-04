@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_templ_mvvm/core/base/state/base_state.dart';
-
+import 'package:mobx/mobx.dart';
 /* 
 * Stateful olmasının sebebi şu: Stateless ekrana sadece bir şeyler çizmek için var. 
 * buraya sorumluluk yükleyeceğimiz için stateful yapmak daha mantıklı.
@@ -17,13 +17,13 @@ import 'package:flutter_templ_mvvm/core/base/state/base_state.dart';
 
 //? Örnek kullanım: Bütün sayfalarda internet olmazsa çıkan bir pop-up veya dialog olsun. Bunun için tüm sayfalarda tek tek tanımlamak yerine tüm sayfaları BaseView dan türetip BaseView içinde bunu tanımlamak süper olur.
 
-class BaseView<T> extends StatefulWidget { //Burada T yi ViewModel gibi bir abstract sınıftan türetebilirdik kısıtlamak için.
+class BaseView<T extends Store> extends StatefulWidget { //Burada T yi ViewModel gibi bir abstract sınıftan türetebilirdik kısıtlamak için.
   BaseView(
       {Key key,
-      this.viewModel,
+      @required this.viewModel,
       this.onModelReady,
       this.onDispose,
-      this.onPageBuilder})
+      @required this.onPageBuilder})
       : super(key: key);
 
   final T viewModel;
@@ -35,7 +35,7 @@ class BaseView<T> extends StatefulWidget { //Burada T yi ViewModel gibi bir abst
   _BaseViewState createState() => _BaseViewState();
 }
 
-class _BaseViewState extends State<BaseView> {
+class _BaseViewState extends BaseState<BaseView> {
   @override
   void initState() {
     super.initState();
@@ -60,7 +60,16 @@ class _BaseViewState extends State<BaseView> {
 
 
 
+
+
+
+
+
+
+
+
 //? KULLANIM
+/*
 
 class TestView extends StatelessWidget {
   const TestView({Key key}) : super(key: key);
@@ -68,7 +77,7 @@ class TestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      viewModel: "",
+      viewModel: "ViewModel",
       onDispose: () {
         //viewmodel öldürme işlemleri vb vb.
       },
@@ -82,3 +91,5 @@ class TestView extends StatelessWidget {
     );
   }
 }
+
+*/
